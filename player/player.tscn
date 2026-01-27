@@ -5,6 +5,22 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kqu6x"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7qer"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(56, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4c7l"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(112, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knn7v"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(168, 224, 56, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7pqkx"]
+atlas = ExtResource("1_oul6g")
+region = Rect2(224, 224, 56, 56)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkbax"]
 atlas = ExtResource("1_oul6g")
 region = Rect2(0, 0, 56, 56)
@@ -97,6 +113,23 @@ region = Rect2(392, 112, 56, 56)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_s7qer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g4c7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knn7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7pqkx")
+}],
+"loop": true,
+"name": &"Fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_rkbax")
 }, {
 "duration": 1.0,
@@ -187,7 +220,17 @@ shape = SubResource("CapsuleShape2D_kqu6x")
 position = Vector2(0, -12)
 scale = Vector2(0.96428573, 0.96428573)
 sprite_frames = SubResource("SpriteFrames_oul6g")
-animation = &"Idle"
+animation = &"Jump"
 autoplay = "Idle"
-frame = 5
-frame_progress = 0.686356
+frame = 7
+frame_progress = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1460332760]
+zoom = Vector2(2.4, 2.4)
+process_callback = 0
+limit_left = 0
+limit_right = 1152
+limit_bottom = 648
+limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
