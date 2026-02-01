@@ -22,10 +22,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 		 
 		
-		if direction == 1:
-			$AnimatedSprite2D.flip_h = false
-		else:
-			$AnimatedSprite2D.flip_h = true
+		$AnimatedSprite2D.flip_h = direction == -1
 		
 		
 		if velocity.y == 0:
