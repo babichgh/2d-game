@@ -430,6 +430,20 @@ texture = ExtResource("6_8cye3")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_2orkt")
 
+[sub_resource type="GDScript" id="GDScript_1ainy"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	text = \"HP: \" + str($\"../../Player/Player\".health)
+"
+
 [node name="Level" type="Node2D" unique_id=1571873774]
 
 [node name="Background" type="ParallaxBackground" parent="." unique_id=511766761]
@@ -468,9 +482,29 @@ layer_0/tile_data = PackedInt32Array(0, 327680, 1, 65536, 327680, 2, 131072, 327
 [node name="Player" type="Node2D" parent="." unique_id=1867119363]
 
 [node name="Player" parent="Player" unique_id=550650072 instance=ExtResource("1_u52ul")]
-position = Vector2(389, 355)
+position = Vector2(70, 425)
 
 [node name="Mobs" type="Node2D" parent="." unique_id=901034737]
 
-[node name="Frog" parent="Mobs" unique_id=998971139 instance=ExtResource("6_1ainy")]
-position = Vector2(919, 550)
+[node name="Frog1" parent="Mobs" unique_id=998971139 instance=ExtResource("6_1ainy")]
+position = Vector2(687, 549)
+
+[node name="Frog2" parent="Mobs" unique_id=2009771505 instance=ExtResource("6_1ainy")]
+position = Vector2(829, 549)
+
+[node name="Frog3" parent="Mobs" unique_id=1691653667 instance=ExtResource("6_1ainy")]
+position = Vector2(968, 549)
+
+[node name="Frog4" parent="Mobs" unique_id=763281743 instance=ExtResource("6_1ainy")]
+position = Vector2(1098, 549)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=108644042]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=303025242]
+offset_left = 29.0
+offset_top = 18.0
+offset_right = 164.65218
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 30
+text = "HP"
+script = SubResource("GDScript_1ainy")

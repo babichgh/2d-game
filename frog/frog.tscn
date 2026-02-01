@@ -5,6 +5,26 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e7v6w"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnqgb"]
+atlas = ExtResource("1_e7v6w")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbpff"]
+atlas = ExtResource("1_e7v6w")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14obr"]
+atlas = ExtResource("1_e7v6w")
+region = Rect2(144, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bv2o"]
+atlas = ExtResource("1_e7v6w")
+region = Rect2(192, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdbs0"]
+atlas = ExtResource("1_e7v6w")
+region = Rect2(240, 96, 48, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7v6w"]
 atlas = ExtResource("1_e7v6w")
 region = Rect2(96, 0, 48, 48)
@@ -109,6 +129,26 @@ region = Rect2(336, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tnqgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbpff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14obr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8bv2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdbs0")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_e7v6w")
 }, {
 "duration": 1.0,
@@ -140,7 +180,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Death",
-"speed": 8.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -166,7 +206,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Hop",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -201,6 +241,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_88uyt"]
 size = Vector2(400, 200)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j225e"]
+size = Vector2(6, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx4uq"]
+size = Vector2(44.25, 2)
+
 [node name="Frog" type="CharacterBody2D" unique_id=998971139]
 script = ExtResource("1_88uyt")
 
@@ -210,13 +256,29 @@ shape = SubResource("CircleShape2D_e7v6w")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1063711070]
 scale = Vector2(1.1666667, 1.1414415)
 sprite_frames = SubResource("SpriteFrames_aacfa")
-animation = &"Idle"
+animation = &"Attack"
 autoplay = "Idle"
 
 [node name="Vision" type="Area2D" parent="." unique_id=2094225845]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision" unique_id=459587030]
+visible = false
 shape = SubResource("RectangleShape2D_88uyt")
 
+[node name="Death" type="Area2D" parent="." unique_id=1448487530]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death" unique_id=2022301834]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_j225e")
+
+[node name="Attack" type="Area2D" parent="." unique_id=1465085747]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack" unique_id=1091936516]
+position = Vector2(-0.125, 0)
+shape = SubResource("RectangleShape2D_vx4uq")
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
 [connection signal="body_entered" from="Vision" to="." method="_on_vision_body_entered"]
 [connection signal="body_exited" from="Vision" to="." method="_on_vision_body_exited"]
+[connection signal="body_entered" from="Death" to="." method="_on_death_body_entered"]
+[connection signal="body_entered" from="Attack" to="." method="_on_attack_body_entered"]
