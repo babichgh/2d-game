@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ch3sgvred1kn1" path="res://background/background_layer_3.png" id="5_i2t4f"]
 [ext_resource type="PackedScene" uid="uid://cclqapt4ndbp8" path="res://frog/frog.tscn" id="6_1ainy"]
 [ext_resource type="Texture2D" uid="uid://cq8gjq3a84e6d" path="res://oak_woods_tileset.png" id="6_8cye3"]
+[ext_resource type="PackedScene" uid="uid://cqowi8ov0epsm" path="res://collectibles/coin.tscn" id="7_n6hdu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2orkt"]
 texture = ExtResource("6_8cye3")
@@ -444,6 +445,20 @@ func _process(_delta: float) -> void:
 	text = \"HP: \" + str($\"../../Player/Player\".health)
 "
 
+[sub_resource type="GDScript" id="GDScript_n6hdu"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	text = \"Coins: \" + str($\"../../Player/Player\".coins)
+"
+
 [node name="Level" type="Node2D" unique_id=1571873774]
 
 [node name="Background" type="ParallaxBackground" parent="." unique_id=511766761]
@@ -500,7 +515,7 @@ position = Vector2(1098, 549)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=108644042]
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=303025242]
+[node name="HP" type="Label" parent="CanvasLayer" unique_id=303025242]
 offset_left = 29.0
 offset_top = 18.0
 offset_right = 164.65218
@@ -508,3 +523,17 @@ offset_bottom = 60.0
 theme_override_font_sizes/font_size = 30
 text = "HP"
 script = SubResource("GDScript_1ainy")
+
+[node name="Coins" type="Label" parent="CanvasLayer" unique_id=374338162]
+offset_left = 29.0
+offset_top = 51.0
+offset_right = 164.65218
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 30
+text = "Coins"
+script = SubResource("GDScript_n6hdu")
+
+[node name="Collectibles" type="Node2D" parent="." unique_id=468743468]
+
+[node name="Gold" parent="Collectibles" unique_id=1704480464 instance=ExtResource("7_n6hdu")]
+position = Vector2(425, 548)
